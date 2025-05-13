@@ -60,6 +60,15 @@ struct BimboPrincipal: View {
 
                         YouTubeScrollView()
                         
+                        Divider()
+                            
+                        
+                        Text("EXPLORA MAS")
+                            .foregroundColor(.bimboBluerey)
+                            .bold()
+                            .padding(.top, 10)
+                            .padding(.trailing,210)
+                        
                         Spacer()
 
                         Button("Ver Mapa") {

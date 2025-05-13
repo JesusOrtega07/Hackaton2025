@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct YouTubeScrollView: View {
-    let videoIDs = ["0PEUgYUfyH0", "sYuj3nw6008", "9E51scGeGUJZIAZs",""]
+    let videoIDs = ["0PEUgYUfyH0", "sYuj3nw6008", "MpXzzPNeoCw","b6m53zj-yS0","jNVSKdJb-5U"]
 
     var body: some View {
             ScrollView(.horizontal, showsIndicators: false) {
