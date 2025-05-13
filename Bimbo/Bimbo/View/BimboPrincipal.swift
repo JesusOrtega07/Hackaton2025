@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Vision
+import AVFoundation
+
 
 struct BimboPrincipal: View {
+    @ObservedObject var puntosVM = Puntos()
     @State private var showMap = false
     @State private var showEstadisticas = false
     @State private var showProductos = false
@@ -16,33 +20,27 @@ struct BimboPrincipal: View {
         ZStack {
             Color.bimboBlue
                 .ignoresSafeArea()
-
+            
             VStack(spacing: 0) {
                 ZStack(alignment: .top) {
                     Image("eslogan")
                         .resizable()
                         .frame(width: 300, height: 200)
                         .padding(.top, 60)
-
+                    
                     HStack(spacing: 90) {
-                        Rectangle()
-                            .frame(width: 140, height: 50)
-                            .cornerRadius(40)
-                            .opacity(0.5)
-                            .overlay(
-                                UserProfileStyleComponent(imageName: "user", name: "Meliza Gonzales", style: .horizontal)
-                                    .frame(width: 120, height: 120)
-                                
-                            )
-                        
-
+                        UserProfileStyleComponent(imageName: "eslogan", name: "Jesús Ortega", style: .horizontal)
+                            .background(
+                                Color.black.opacity(0.4)
+                            ).clipShape(RoundedRectangle(cornerRadius: 40))
+                            .frame(maxWidth: 250,maxHeight: 65)
                         Rectangle()
                             .frame(width: 140, height: 50)
                             .cornerRadius(40)
                             .opacity(0.5)
                             .overlay(
                                 HStack(spacing:15){
-                                    Text("0")
+                                    Text("\(puntosVM.puntos)")
                                         .foregroundColor(.bimboWhite)
                                         .bold()
                                         .font(.title)
@@ -51,24 +49,24 @@ struct BimboPrincipal: View {
                                         .frame(width: 30, height: 30)
                                 }
                             )
-                    }
+                    }.padding([.leading,.trailing], 20)
                 }
                 ZStack {
                     Color.bimboWhite
                         .cornerRadius(30)
                         .ignoresSafeArea(edges: .bottom)
-
+                    
                     VStack {
                         Text("IMPACTO")
                             .foregroundColor(.bimboBluerey)
                             .bold()
                             .padding(.top, 10)
                             .padding(.trailing,250)
-
+                        
                         YouTubeScrollView()
                         
                         Divider()
-                            
+                        
                         
                         Text("EXPLORA MAS")
                             .foregroundColor(.bimboBluerey)
@@ -92,7 +90,7 @@ struct BimboPrincipal: View {
                                     .padding(.top, 12)
                                     .padding(.trailing, 10)
                             }
-
+                            
                             VStack {
                                 Button {
                                     showEstadisticas = true
@@ -108,7 +106,7 @@ struct BimboPrincipal: View {
                                         .cornerRadius(40)
                                         .padding(.top, 12)
                                 }
-
+                                
                                 Button {
                                     showMap = true
                                 } label: {
@@ -126,26 +124,24 @@ struct BimboPrincipal: View {
                             }
                         }
                         
-                        Button {
-                            // Acción del botón
-                        } label: {
+                        Button(action: {
+                            //showingCamera = true
+                        }) {
                             HStack {
-                                Text("Escanea, Aprende y Gana")
+                                Text("Aprende y Gana")
+                                    .font(.custom("Futura", size: 20))
                                     .foregroundColor(.white)
-                                Image("camarabimbo")
+                                
+                                Image(systemName: "camera")
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
                             }
                             .padding()
                             .background(Color.blue)
                             .cornerRadius(20)
-                        }.padding(.top,15)
-
-                        
-                        
-                        
-
-                        
+                        }
+                        .padding(.top,15)
                     }
                 }
                 .frame(maxHeight: .infinity)
