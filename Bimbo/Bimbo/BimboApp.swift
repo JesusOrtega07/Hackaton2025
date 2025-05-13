@@ -11,7 +11,7 @@ import SwiftUI
 struct BimboApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BimboPrincipal()
         }
     }
 }

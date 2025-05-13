@@ -8,24 +8,41 @@
 import SwiftUI
 
 struct CountryInfoSheet: View {
-    let country: String
-    
+    let info: InfoRegiones
+
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Información de \(country)")
-                .font(.largeTitle)
+        VStack(alignment: .leading, spacing: 15) {
+            Text("🌍 Información de \(info.region.rawValue)")
+                .font(.title)
                 .bold()
-            
-            Text("Aquí puedes poner más detalles personalizados sobre \(country), como datos demográficos, eventos, noticias, etc.")
-                .padding()
-            
+
+            Divider()
+
+            Group {
+                Text("🧃 Portafolio:")
+                    .font(.headline)
+                Text(info.portafolio)
+
+                Text("🤝 Buen Vecino:")
+                    .font(.headline)
+                Text(info.buenvecino)
+
+                Text("⚡ Energía Renovable:")
+                    .font(.headline)
+                Text(info.energiarenobable)
+
+                Text("♻️ Empaque Reciclado:")
+                    .font(.headline)
+                Text(info.empaquereciclado)
+
+                Text("💧 Agua Reusada:")
+                    .font(.headline)
+                Text(info.aguareuso)
+            }
+
             Spacer()
         }
         .padding()
     }
 }
 
-/*#Preview {
-    CountryInfoSheet(country: "Mexico")
-}
-*/
