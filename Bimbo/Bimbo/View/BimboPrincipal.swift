@@ -11,15 +11,69 @@ struct BimboPrincipal: View {
     @State private var showMap = false
 
     var body: some View {
-        VStack {
+        ZStack {
+            Color.bimboBlue
+                .ignoresSafeArea()
 
-            Button("Ver Mapa") {
-                showMap = true
+            VStack(spacing: 0) {
+                ZStack(alignment: .top) {
+                    Image("eslogan")
+                        .resizable()
+                        .frame(width: 300, height: 200)
+                        .padding(.top, 60)
+
+                    HStack(spacing: 90) {
+                        Rectangle()
+                            .frame(width: 140, height: 50)
+                            .cornerRadius(40)
+                            .opacity(0.5)
+                        
+
+                        Rectangle()
+                            .frame(width: 140, height: 50)
+                            .cornerRadius(40)
+                            .opacity(0.5)
+                            .overlay(
+                                HStack(spacing:15){
+                                    Text("0")
+                                        .foregroundColor(.bimboWhite)
+                                        .bold()
+                                        .font(.title)
+                                    Image("pancito")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                }
+                            )
+                    }
+                }
+                ZStack {
+                    Color.bimboWhite
+                        .cornerRadius(30)
+                        .ignoresSafeArea(edges: .bottom)
+
+                    VStack {
+                        Text("IMPACTO")
+                            .foregroundColor(.bimboBluerey)
+                            .bold()
+                            .padding(.top, 10)
+                            .padding(.trailing,250)
+
+                        YouTubeScrollView()
+                        
+                        Spacer()
+
+                        Button("Ver Mapa") {
+                            showMap = true
+                        }
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(50)
+                        .padding(.bottom, 40)
+                    }
+                }
+                .frame(maxHeight: .infinity)
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(50)
         }
         .fullScreenCover(isPresented: $showMap) {
             MapWithMarkersView()
