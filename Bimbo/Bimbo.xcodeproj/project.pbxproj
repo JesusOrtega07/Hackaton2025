@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8D2C60802DD3B2BC0080D6B3 /* RtcBasic in Frameworks */ = {isa = PBXBuildFile; productRef = 8D2C607F2DD3B2BC0080D6B3 /* RtcBasic */; };
+		8D2C60822DD3B2CA0080D6B3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8D2C60812DD3B2CA0080D6B3 /* FirebaseCore */; };
+		8D2C60842DD3B2D40080D6B3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8D2C60832DD3B2D40080D6B3 /* FirebaseFirestore */; };
+		8D2C60862DD3B2D90080D6B3 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8D2C60852DD3B2D90080D6B3 /* FirebaseDatabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8D32D6D22DD3072C0017C75C /* Bimbo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bimbo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,16 +30,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2C60822DD3B2CA0080D6B3 /* FirebaseCore in Frameworks */,
+				8D2C60802DD3B2BC0080D6B3 /* RtcBasic in Frameworks */,
+				8D2C60862DD3B2D90080D6B3 /* FirebaseDatabase in Frameworks */,
+				8D2C60842DD3B2D40080D6B3 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D2C607E2DD3B2BC0080D6B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D32D6C92DD3072C0017C75C = {
 			isa = PBXGroup;
 			children = (
 				8D32D6D42DD3072C0017C75C /* Bimbo */,
+				8D2C607E2DD3B2BC0080D6B3 /* Frameworks */,
 				8D32D6D32DD3072C0017C75C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +84,10 @@
 			);
 			name = Bimbo;
 			packageProductDependencies = (
+				8D2C607F2DD3B2BC0080D6B3 /* RtcBasic */,
+				8D2C60812DD3B2CA0080D6B3 /* FirebaseCore */,
+				8D2C60832DD3B2D40080D6B3 /* FirebaseFirestore */,
+				8D2C60852DD3B2D90080D6B3 /* FirebaseDatabase */,
 			);
 			productName = Bimbo;
 			productReference = 8D32D6D22DD3072C0017C75C /* Bimbo.app */;
@@ -94,6 +117,10 @@
 			);
 			mainGroup = 8D32D6C92DD3072C0017C75C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8D2C607C2DD3B29A0080D6B3 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */,
+				8D2C607D2DD3B2B20080D6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8D32D6D32DD3072C0017C75C /* Products */;
 			projectDirPath = "";
@@ -328,6 +355,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D2C607C2DD3B29A0080D6B3 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AgoraIO/AgoraRtcEngine_iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+		8D2C607D2DD3B2B20080D6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D2C607F2DD3B2BC0080D6B3 /* RtcBasic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D2C607C2DD3B29A0080D6B3 /* XCRemoteSwiftPackageReference "AgoraRtcEngine_iOS" */;
+			productName = RtcBasic;
+		};
+		8D2C60812DD3B2CA0080D6B3 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D2C607D2DD3B2B20080D6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		8D2C60832DD3B2D40080D6B3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D2C607D2DD3B2B20080D6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		8D2C60852DD3B2D90080D6B3 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D2C607D2DD3B2B20080D6B3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D32D6CA2DD3072C0017C75C /* Project object */;
 }
