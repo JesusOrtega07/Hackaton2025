@@ -27,6 +27,11 @@ struct BimboPrincipal: View {
                             .frame(width: 140, height: 50)
                             .cornerRadius(40)
                             .opacity(0.5)
+                            .overlay(
+                                UserProfileStyleComponent(imageName: "user", name: "Meliza Gonzales", style: .horizontal)
+                                    .frame(width: 120, height: 120)
+                                
+                            )
                         
 
                         Rectangle()

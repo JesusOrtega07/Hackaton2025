@@ -7,18 +7,30 @@
 
 import SwiftUI
 
-struct LogIn: View {
+struct Register: View {
     @State private var rememberMe = false
     @State private var norobot = false
     @State private var username = ""
     @State private var password = ""
-    @State private var isRegisterViewPresented = false
     @State private var showVP = false
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
             Color.bimboazulito
                 .ignoresSafeArea()
+            
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.7))
+                    .clipShape(Circle())
+                    .shadow(radius: 4)
+            }
+            .position(x: 40, y: 30)
 
             VStack {
                 Image("logobimbo")
@@ -30,15 +42,15 @@ struct LogIn: View {
                         .foregroundColor(Color.bimboazulito)
                         .frame(width: 400, height: 480)
                         .cornerRadius(26)
-                        //.offset(y: 70) // Eliminado para subir el rectángulo
+
                         .overlay(
                             VStack(spacing: 20) {
-                                Text("Iniciar sesión")
+                                Text("Registro")
                                     .foregroundColor(Color.bimboBlue)
                                     .bold()
                                     .font(.largeTitle)
-                                    .padding(.top, -80) // Antes era 130, ahora es más arriba
-
+                                    .padding(.top, -80)
+                                
                                 CustomTextField(
                                     title: "Ingresa tu usuario",
                                     placeholder: "",
@@ -66,29 +78,10 @@ struct LogIn: View {
                                 CustomCheckbox(label: "No soy un robot", isChecked: $norobot)
                                     .padding(.leading, -130)
 
-                                ZStack {
-                                    CustomButton(
-                                        action: {
-                                            isRegisterViewPresented = true
-                                        },
-                                        style: .standard(
-                                            fontColor: .bimboBlue,
-                                            backgroundColor: .bimboazulito,
-                                            buttonName: "regístrate"
-                                        )
-                                    )
-                                    .padding(.leading, 170)
-
-                                    Text("¿Aun no eres miembro?")
-                                        .foregroundColor(.bimboBlue)
-                                        .padding(.leading, -100)
-                                }
-                                .frame(height: 40)
 
                                 CustomButton(
                                     action: {
                                         showVP = true
-                                        
                                     },
                                     style: .standard(
                                         fontColor: .bimboazulito,
@@ -98,19 +91,20 @@ struct LogIn: View {
                                 )
                                 .frame(width: 300)
                             }
+                            
                         )
+                    
+                    
                 }
 
                 Spacer()
             }
         }.fullScreenCover(isPresented: $showVP) {
             BimboPrincipal()
-        }.fullScreenCover(isPresented: $isRegisterViewPresented) {
-            Register()
         }
     }
 }
 
 #Preview {
-    LogIn()
+    Register()
 }
