@@ -22,13 +22,15 @@ struct MapWithMarkersView: View {
     @State private var selectedInfo: InfoRegiones? = infoRegiones.first { $0.region == .mexico }
 
     let countries = [
-        "México": CLLocationCoordinate2D(latitude: 23.6345, longitude: -100.5528),
-        "Estados Unidos - Canada": CLLocationCoordinate2D(latitude: 50.0902, longitude: -107.7129),
-        "Centro America": CLLocationCoordinate2D(latitude: -1.4161, longitude: -71.6167),
-        "Brasil": CLLocationCoordinate2D(latitude: -11.4161, longitude: -48.6167),
-        "Europa": CLLocationCoordinate2D(latitude: 49.0902, longitude: 12.7129),
-        "Africa": CLLocationCoordinate2D(latitude: 16.0902, longitude: 15.7129),
-        "Asia": CLLocationCoordinate2D(latitude: 36.0902, longitude: 103.7129)
+        "Bimbo México": CLLocationCoordinate2D(latitude: 23.6345, longitude: -100.5528),
+        "Bimbo BBV": CLLocationCoordinate2D(latitude: 56.0902, longitude: -107.7129),
+        "Bimbo QSR": CLLocationCoordinate2D(latitude: 39.0902, longitude: -104.7129),
+        "Bimbo Latin Centro": CLLocationCoordinate2D(latitude: 14.4161, longitude: -86.6167),
+        "Bimbo Latin Sur": CLLocationCoordinate2D(latitude: -5.4161, longitude: -73.6167),
+        "Bimbo Brasil": CLLocationCoordinate2D(latitude: -11.4161, longitude: -48.6167),
+        "EMEA": CLLocationCoordinate2D(latitude: 49.0902, longitude: 12.7129),
+        "Bimbo Asia": CLLocationCoordinate2D(latitude: 36.0902, longitude: 103.7129),
+        
     ]
 
     var body: some View {

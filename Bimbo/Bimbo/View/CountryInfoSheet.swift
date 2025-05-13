@@ -11,38 +11,59 @@ struct CountryInfoSheet: View {
     let info: InfoRegiones
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("🌍 Información de \(info.region.rawValue)")
-                .font(.title)
-                .bold()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("🌍 Información de \(info.region.rawValue)")
+                    .font(.title2)
+                    .bold()
+                    .padding(.bottom, 5)
 
-            Divider()
+                Divider()
 
-            Group {
-                Text("🧃 Portafolio:")
-                    .font(.headline)
-                Text(info.portafolio)
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 50) {
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("🧃 Su portafolio está constituido por el:")
+                            .font(.subheadline)
+                            .bold()
+                        Text(info.portafolio)
+                            .font(.caption)
+                    }
 
-                Text("🤝 Buen Vecino:")
-                    .font(.headline)
-                Text(info.buenvecino)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("🤝 Ha ayudado en recursos a más de:")
+                            .font(.subheadline)
+                            .bold()
+                        Text(info.buenvecino)
+                            .font(.caption)
+                    }
 
-                Text("⚡ Energía Renovable:")
-                    .font(.headline)
-                Text(info.energiarenobable)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("⚡ El porcentaje de Energía Renovable que utiliza es:")
+                            .font(.subheadline)
+                            .bold()
+                        Text(info.energiarenobable)
+                            .font(.caption)
+                    }
 
-                Text("♻️ Empaque Reciclado:")
-                    .font(.headline)
-                Text(info.empaquereciclado)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("♻️ El porcentaje del Empaque Reciclado es de:")
+                            .font(.subheadline)
+                            .bold()
+                        Text(info.empaquereciclado)
+                            .font(.caption)
+                    }
 
-                Text("💧 Agua Reusada:")
-                    .font(.headline)
-                Text(info.aguareuso)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("💧 Porcentaje de Agua Reusada en la empresa:")
+                            .font(.subheadline)
+                            .bold()
+                        Text(info.aguareuso)
+                            .font(.caption)
+                    }
+                }
             }
-
-            Spacer()
+            .padding()
         }
-        .padding()
     }
 }
-
