@@ -10,6 +10,7 @@ import SwiftUI
 struct BimboPrincipal: View {
     @State private var showMap = false
     @State private var showEstadisticas = false
+    @State private var showProductos = false
 
     var body: some View {
         ZStack {
@@ -77,7 +78,7 @@ struct BimboPrincipal: View {
                         
                         HStack {
                             Button {
-                                // Acción para el botón con imagen "64"
+                                showProductos = true
                             } label: {
                                 Rectangle()
                                     .foregroundColor(Color.bimboazulito)
@@ -155,6 +156,9 @@ struct BimboPrincipal: View {
         }
         .fullScreenCover(isPresented: $showEstadisticas) {
             GraficaBarrasView()
+        }
+        .fullScreenCover(isPresented: $showProductos) {
+            Productos()
         }
     }
 }
