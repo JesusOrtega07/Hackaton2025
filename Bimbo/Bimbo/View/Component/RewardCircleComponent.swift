@@ -24,21 +24,43 @@ enum isClaimed{
         switch self{
         case .notClaimed:
             return AnyView(
-                HStack(){
-                    CirculoConImagen(nombreImagen: imageName)
+                HStack{
+                    CirculoConImagen(nombreImagen: imageName, isClaimed: false)
                         .padding(.leading, 10)
-                    Text("Hola")
+                    LineDirection.horizontal.dottedLine()
+                    Spacer()
+                    HStack{
+                        Image("pancito")
+                            .resizable()
+                        Text("\(points)")
+                            .font(.custom("futura", size: 20))
+                    }.frame(width: 80, height: 40)
+                        .padding(3)
+                        .background(Color.gray.opacity(0.3))
+                        .cornerRadius(8)
                 }.frame(maxWidth: .infinity, maxHeight: 150)
+                    .padding(.trailing, 20)
             )
             
         case .claimed:
             return AnyView(
                 HStack{
-                    CirculoConImagen(nombreImagen: imageName)
+                    CirculoConImagen(nombreImagen: imageName, isClaimed: true)
                         .padding(.leading, 10)
                     LineDirection.horizontal.dottedLine()
                     Spacer()
+                    HStack{
+                        Image("pancito")
+                            .resizable()
+                        Text("\(points)")
+                            .font(.custom("futura", size: 20))
+                    }.frame(width: 80, height: 40)
+                        .padding(3)
+                        .background(Color.gray.opacity(0.3))
+                        .cornerRadius(8)
                 }.frame(maxWidth: .infinity, maxHeight: 150)
+                    .padding(.trailing, 20)
+                
             )
         }
     }
@@ -47,7 +69,8 @@ enum isClaimed{
 // AUXILIARES ==========
 
 struct CirculoConImagen: View {
-    var nombreImagen: String  // Variable que recibe el nombre de la imagen
+    var nombreImagen: String
+    var isClaimed: Bool
     
     var body: some View {
         Circle()
@@ -55,7 +78,7 @@ struct CirculoConImagen: View {
             .foregroundColor(.blue)
             .frame(width: 100, height: 100)
             .overlay(
-                Image(nombreImagen)
+                Image(isClaimed ? "ositoFace" : nombreImagen)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
@@ -63,12 +86,11 @@ struct CirculoConImagen: View {
             )
     }
 }
-
 enum LineDirection {
     case horizontal
     case vertical
     
-    func dottedLine(color: Color = .blue, lineWidth: CGFloat = 2, dashPattern: [CGFloat] = [5]) -> some View {
+    func dottedLine(color: Color = .blue, lineWidth: CGFloat = 2, dashPattern: [CGFloat] = [7]) -> some View {
         switch self {
         case .horizontal:
             return AnyView(
@@ -92,6 +114,6 @@ enum LineDirection {
 }
 
 #Preview {
-    RewardCircleComponent(rewardPicture: "location", rewardPoits: 1, rewardStatus: .claimed)
+    RewardCircleComponent(rewardPicture: "location", rewardPoits: 1, rewardStatus: .notClaimed)
     //CirculoConImagen(nombreImagen: "location")
 }
