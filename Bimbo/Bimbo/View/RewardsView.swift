@@ -164,19 +164,6 @@ struct RewardsView: View {
                                 rewardStatus: $variables[8]
                             )
                         }
-                        line()
-                        
-                        Button {
-                            puntosVM.puntos = puntosVM.puntos - 1600
-                            print(puntosVM.puntos)
-                            variables[9] = .claimed
-                        } label: {
-                            RewardCircleComponent(
-                                rewardPicture: "placeholder",
-                                rewardPoits: 1600,
-                                rewardStatus: $variables[9]
-                            )
-                        }
                     }
 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.top, 30)

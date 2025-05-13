@@ -17,17 +17,8 @@ struct Temporal: View {
     
     var body: some View {
         VStack {
-            if let image = selectedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 200)
-                    .cornerRadius(8)
-                    .padding()
-            }
-            
             Button(action: {
-                showingCamera = true
+                showingCamera = true // Importante
             }) {
                 HStack {
                     Image(systemName: "camera")
@@ -42,7 +33,7 @@ struct Temporal: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Resultado:")
                     .font(.headline)
-                Text(classificationResult)
+                Text(classificationResult) // Resultado
                 Text("Confianza: \(String(format: "%.2f", confidence * 100))%")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -51,7 +42,7 @@ struct Temporal: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .fullScreenCover(isPresented: $showingCamera) {
+        .fullScreenCover(isPresented: $showingCamera) { // Importante
             CameraView(selectedImage: $selectedImage)
                 .onDisappear {
                     if let image = selectedImage, let ciImage = CIImage(image: image) {
