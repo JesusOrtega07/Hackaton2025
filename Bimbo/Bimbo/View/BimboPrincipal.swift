@@ -74,16 +74,76 @@ struct BimboPrincipal: View {
                             .padding(.top, 10)
                             .padding(.trailing,210)
                         
-                        Spacer()
+                        HStack {
+                            Button {
+                                // Acción para el botón con imagen "64"
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(Color.bimboazulito)
+                                    .overlay(
+                                        Image("64")
+                                            .resizable()
+                                            .frame(width: 150, height: 150)
+                                    )
+                                    .frame(width: 180, height: 190)
+                                    .cornerRadius(40)
+                                    .padding(.top, 12)
+                                    .padding(.trailing, 10)
+                            }
 
-                        Button("Ver Mapa") {
-                            showMap = true
+                            VStack {
+                                Button {
+                                    // Acción para el botón con imagen "65"
+                                } label: {
+                                    Rectangle()
+                                        .foregroundColor(Color.bimboazulito)
+                                        .overlay(
+                                            Image("65")
+                                                .resizable()
+                                                .frame(width: 130, height: 70)
+                                        )
+                                        .frame(width: 180, height: 90)
+                                        .cornerRadius(40)
+                                        .padding(.top, 12)
+                                }
+
+                                Button {
+                                    showMap = true
+                                } label: {
+                                    Rectangle()
+                                        .foregroundColor(Color.bimboazulito)
+                                        .overlay(
+                                            Image("66")
+                                                .resizable()
+                                                .frame(width: 130, height: 70)
+                                        )
+                                        .frame(width: 180, height: 70)
+                                        .cornerRadius(40)
+                                        .padding(.top, 12)
+                                }
+                            }
                         }
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(50)
-                        .padding(.bottom, 40)
+                        
+                        Button {
+                            // Acción del botón
+                        } label: {
+                            HStack {
+                                Text("Escanea, Aprende y Gana")
+                                    .foregroundColor(.white)
+                                Image("camarabimbo")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(20)
+                        }.padding(.top,15)
+
+                        
+                        
+                        
+
+                        
                     }
                 }
                 .frame(maxHeight: .infinity)

@@ -51,7 +51,6 @@ struct UserProfileStyleComponent: View {
                 
             case .horizontal:
                 return AnyView(
-<<<<<<< HEAD
                     GeometryReader { geometry in
                         HStack(spacing: 12) { // Espacio fijo entre elementos para mejor legibilidad
                             // Imagen circular
@@ -84,35 +83,6 @@ struct UserProfileStyleComponent: View {
                         .background(Color.gray.opacity(0.1)) // Para visualizar el área ocupada
                     }
                 )
-=======
-                                GeometryReader { geometry in
-                                    let containerSize = min(geometry.size.width, geometry.size.height)
-                                    
-                                    HStack(spacing: containerSize * 0.05) {
-                                        Image(imageName)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: containerSize * 0.3, height: containerSize * 0.3)
-                                            .clipShape(Circle())
-                                            .overlay(
-                                                Circle()
-                                                    .stroke(Color.green.opacity(0.5), lineWidth: containerSize * 0.015)
-                                            )
-                                        
-                                        Text(name)
-                                            .bold()
-                                            .font(.custom("Gagalin", size: containerSize * 0.1))
-                                            .foregroundColor(Color.red)
-                                            .minimumScaleFactor(1.5)
-                                            .lineLimit(1)
-                                        
-                                        Spacer()
-                                    }
-                                    .padding(containerSize * 0.05)
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
-                                }
-                            )
->>>>>>> bb33a35 (login and register ready ando usertype)
             }
         }
     }

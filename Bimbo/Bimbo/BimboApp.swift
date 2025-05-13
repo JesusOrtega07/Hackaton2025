@@ -12,5 +12,6 @@ struct BimboApp: App {
     var body: some Scene {
         WindowGroup {
             RewardsView(puntosVM: Puntos())
+        }
     }
 }
