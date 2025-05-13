@@ -10,9 +10,9 @@ import SwiftUI
 struct RewardCircleComponent: View {
     let rewardPicture: String
     let rewardPoits: Int
-    let rewardStatus: isClaimed
+    @Binding var rewardStatus: isClaimed
     var body: some View {
-        rewardStatus.rewardStatusView(imageName: "location", points: 100)
+        rewardStatus.rewardStatusView(imageName: rewardPicture, points: rewardPoits)
     }
 }
 
@@ -24,22 +24,31 @@ enum isClaimed{
         switch self{
         case .notClaimed:
             return AnyView(
-                HStack{
+                HStack {
                     CirculoConImagen(nombreImagen: imageName, isClaimed: false)
                         .padding(.leading, 10)
+                    
                     LineDirection.horizontal.dottedLine()
+                    
                     Spacer()
-                    HStack{
+                    
+                    HStack {
                         Image("pancito")
                             .resizable()
+                            .frame(width: 20, height: 20) // Más pequeño
+                        
                         Text("\(points)")
-                            .font(.custom("futura", size: 20))
-                    }.frame(width: 80, height: 40)
-                        .padding(3)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(8)
-                }.frame(maxWidth: .infinity, maxHeight: 150)
-                    .padding(.trailing, 20)
+                            .font(.custom("futura", size: 20)) // Más grande
+                            .foregroundColor(.primary)
+                    }
+                    .frame(width: 90, height: 40)
+                    .padding(3)
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity, maxHeight: 160)
+                .padding(.trailing, 20)
+
             )
             
         case .claimed:
@@ -81,7 +90,7 @@ struct CirculoConImagen: View {
                 Image(isClaimed ? "ositoFace" : nombreImagen)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 90, height: 890)
                     .clipShape(Circle())
             )
     }
@@ -114,6 +123,6 @@ enum LineDirection {
 }
 
 #Preview {
-    RewardCircleComponent(rewardPicture: "location", rewardPoits: 1, rewardStatus: .notClaimed)
+    RewardCircleComponent(rewardPicture: "location", rewardPoits: 1, rewardStatus: .constant(.notClaimed))
     //CirculoConImagen(nombreImagen: "location")
 }
