@@ -21,6 +21,7 @@ struct BimboPrincipal: View {
     @State private var confidence: Double = 0.0
     @State private var showingCameraModel = false
     @State private var showProductModel = false
+    @State private var showProductosView = false
 
     var body: some View {
         ZStack {
@@ -169,9 +170,7 @@ struct BimboPrincipal: View {
         .fullScreenCover(isPresented: $showProductModel) {
             CameraView(selectedImage: $selectedImage)
                 .onDisappear {
-                    if let imagen = selectedImage {
-                        Productos(producto: imagen)
-                    }
+                        Productos()
                 }
         }
         .fullScreenCover(isPresented: $showingCameraModel) {
