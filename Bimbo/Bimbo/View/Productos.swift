@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct Productos: View {
+    let producto: UIImage?
     @State private var showWebView = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
             Spacer()
-
+            
+            if let producto = producto {
+                Image(uiImage: producto)
+                    .resizable()
+                    .frame(width: 300, height: 300)
+            } else {
+                Text("No hay imagen disponible")
+                    .frame(width: 300, height: 300)
+            }
+            
             HStack {
                 Button("Listo") {
                     showWebView = true
@@ -45,5 +55,5 @@ struct Productos: View {
 }
 
 #Preview {
-    Productos()
+    Productos(producto: nil)
 }

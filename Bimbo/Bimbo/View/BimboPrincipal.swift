@@ -16,6 +16,11 @@ struct BimboPrincipal: View {
     @State private var showEstadisticas = false
     @State private var showProductos = false
     @State private var showReward = false
+    @State private var selectedImage: UIImage?
+    @State private var classificationResult: String = "Toma una foto"
+    @State private var confidence: Double = 0.0
+    @State private var showingCameraModel = false
+    @State private var showProductModel = false
 
     var body: some View {
         ZStack {
@@ -65,7 +70,7 @@ struct BimboPrincipal: View {
                         .ignoresSafeArea(edges: .bottom)
                     
                     VStack {
-                        Text("IMPACTO")
+                        Text(classificationResult)
                             .foregroundColor(.bimboBluerey)
                             .bold()
                             .padding(.top, 10)
@@ -84,7 +89,7 @@ struct BimboPrincipal: View {
                         
                         HStack {
                             Button {
-                                showProductos = true
+                                showProductModel = true
                             } label: {
                                 Rectangle()
                                     .foregroundColor(Color.bimboazulito)
@@ -133,7 +138,7 @@ struct BimboPrincipal: View {
                         }
                         
                         Button(action: {
-                            //showingCamera = true
+                            showingCameraModel = true
                         }) {
                             HStack {
                                 Text("Aprende y Gana")
@@ -161,13 +166,62 @@ struct BimboPrincipal: View {
         .fullScreenCover(isPresented: $showEstadisticas) {
             GraficaBarrasView()
         }
-        .fullScreenCover(isPresented: $showProductos) {
-            Productos()
+        .fullScreenCover(isPresented: $showProductModel) {
+            CameraView(selectedImage: $selectedImage)
+                .onDisappear {
+                    if let imagen = selectedImage {
+                        Productos(producto: imagen)
+                    }
+                }
+        }
+        .fullScreenCover(isPresented: $showingCameraModel) {
+            CameraView(selectedImage: $selectedImage)
+                .onDisappear {
+                    if let image = selectedImage, let ciImage = CIImage(image: image) {
+                        Task {
+                            await classifyImage(ciImage)
+                        }
+                    }
+                }
         }
         .fullScreenCover(isPresented: $showReward) {
             RewardsView(puntosVM: Puntos())
         }
     }
+    
+    private func classifyImage(_ image: CIImage) async {
+        guard let model = try? VNCoreMLModel(for: BimboIA(configuration: MLModelConfiguration()).model) else {
+            classificationResult = "Error al cargar el modelo"
+            return
+        }
+        
+        let request = VNCoreMLRequest(model: model) { request, error in
+            if let error = error {
+                classificationResult = "Error: \(error.localizedDescription)"
+                return
+            }
+            
+            guard let results = request.results as? [VNClassificationObservation],
+                  let topResult = results.first else {
+                classificationResult = "No se pudieron interpretar los resultados"
+                return
+            }
+            
+            DispatchQueue.main.async {
+                classificationResult = topResult.identifier
+                confidence = Double(topResult.confidence)
+            }
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            classificationResult = "Error al procesar la imagen: \(error.localizedDescription)"
+        }
+    }
+    
 }
 
 #Preview {
