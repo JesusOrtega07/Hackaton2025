@@ -71,7 +71,7 @@ struct BimboPrincipal: View {
                         .ignoresSafeArea(edges: .bottom)
                     
                     VStack {
-                        Text(classificationResult)
+                        Text("IMPACTO")
                             .foregroundColor(.bimboBluerey)
                             .bold()
                             .padding(.top, 10)
