@@ -15,6 +15,7 @@ struct BimboPrincipal: View {
     @State private var showMap = false
     @State private var showEstadisticas = false
     @State private var showProductos = false
+    @State private var showReward = false
 
     var body: some View {
         ZStack {
@@ -31,24 +32,31 @@ struct BimboPrincipal: View {
                     HStack(spacing: 90) {
                         UserProfileStyleComponent(imageName: "eslogan", name: "Jesús Ortega", style: .horizontal)
                             .background(
-                                Color.black.opacity(0.4)
+                                Color.bimboBlack.opacity(0.4)
                             ).clipShape(RoundedRectangle(cornerRadius: 40))
                             .frame(maxWidth: 250,maxHeight: 65)
-                        Rectangle()
-                            .frame(width: 140, height: 50)
-                            .cornerRadius(40)
-                            .opacity(0.5)
-                            .overlay(
-                                HStack(spacing:15){
-                                    Text("\(puntosVM.puntos)")
-                                        .foregroundColor(.bimboWhite)
-                                        .bold()
-                                        .font(.title)
-                                    Image("pancito")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                }
-                            )
+                        
+                        Button {
+                            showReward = true
+                        } label: {
+                            Rectangle()
+                                .frame(width: 140, height: 50)
+                                .foregroundColor(.bimboBlack)
+                                .cornerRadius(40)
+                                .opacity(0.4)
+                                .overlay(
+                                    HStack(spacing:15){
+                                        Text("\(puntosVM.puntos)")
+                                            .foregroundColor(.bimboWhite)
+                                            .bold()
+                                            .font(.title)
+                                        Image("pancito")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                    }
+                                )
+                        }
+
                     }.padding([.leading,.trailing], 20)
                 }
                 ZStack {
@@ -132,7 +140,7 @@ struct BimboPrincipal: View {
                                     .font(.custom("Futura", size: 20))
                                     .foregroundColor(.white)
                                 
-                                Image(systemName: "camera")
+                                Image("camarabimbo")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 30, height: 30)
@@ -155,6 +163,9 @@ struct BimboPrincipal: View {
         }
         .fullScreenCover(isPresented: $showProductos) {
             Productos()
+        }
+        .fullScreenCover(isPresented: $showReward) {
+            RewardsView(puntosVM: Puntos())
         }
     }
 }

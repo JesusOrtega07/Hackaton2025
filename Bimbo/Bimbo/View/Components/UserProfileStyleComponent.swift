@@ -58,8 +58,8 @@ struct UserProfileStyleComponent: View {
                                 .resizable()
                                 .scaledToFill()
                                 .frame(
-                                    width: min(geometry.size.height, geometry.size.width * 0.3),
-                                    height: min(geometry.size.height, geometry.size.width * 0.3)
+                                    width: min(geometry.size.height, geometry.size.width * 0.25),
+                                    height: min(geometry.size.height, geometry.size.width * 0.25)
                                 )
                                 .clipShape(Circle())
                                 .overlay(
@@ -71,7 +71,7 @@ struct UserProfileStyleComponent: View {
                             // Texto
                             Text(name)
                                 .bold()
-                                .font(.custom("Futura", size: 30))
+                                .font(.custom("Futura", size: 25))
                                 .foregroundColor(.white)
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(1)

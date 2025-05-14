@@ -10,12 +10,25 @@ import SwiftUI
 struct RewardsView: View {
     @ObservedObject var puntosVM: Puntos
     @State var variables : [isClaimed] = [.notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, .notClaimed, ]
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
         ZStack(alignment: .top) {
             Color.bimboBlue
                 .ignoresSafeArea()
+        
             VStack{
                 // Agregar el botón de retroceso @Dan ejej
+                Button(action: {
+                    dismiss()
+                }) {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+                }
+                .padding(.trailing, 290)
+                .zIndex(1)
                 HStack{
                     HStack(spacing: 20) {
                         UserProfileStyleComponent(imageName: "eslogan", name: "Jesús Ortega", style: .horizontal)
