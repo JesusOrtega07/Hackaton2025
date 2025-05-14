@@ -170,8 +170,11 @@ struct BimboPrincipal: View {
         .fullScreenCover(isPresented: $showProductModel) {
             CameraView(selectedImage: $selectedImage)
                 .onDisappear {
-                        Productos()
+                    showProductosView = true
                 }
+        }
+        .fullScreenCover(isPresented: $showProductosView) {
+            Productos() // Aquí muestras tu vista de productos
         }
         .fullScreenCover(isPresented: $showingCameraModel) {
             CameraView(selectedImage: $selectedImage)
