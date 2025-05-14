@@ -184,6 +184,7 @@ struct BimboPrincipal: View {
                 .onDisappear {
                     if let image = selectedImage, let ciImage = CIImage(image: image) {
                         Task {
+                            puntosVM.puntos = puntosVM.puntos + 100
                             await classifyImage(ciImage)
                         }
                     }
@@ -209,7 +210,6 @@ struct BimboPrincipal: View {
             guard let results = request.results as? [VNClassificationObservation],
                   let topResult = results.first else {
                 classificationResult = "No se pudieron interpretar los resultados"
-                puntosVM.puntos = puntosVM.puntos + 100
                 return
             }
             
