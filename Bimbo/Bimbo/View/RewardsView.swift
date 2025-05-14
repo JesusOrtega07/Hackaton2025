@@ -159,7 +159,7 @@ struct RewardsView: View {
                             variables[7] = .claimed
                         } label: {
                             RewardCircleComponent(
-                                rewardPicture: "Pan blanco",
+                                rewardPicture: "Pan blanco bimbo",
                                 rewardPoits: 1500,
                                 rewardStatus: $variables[7]
                             )

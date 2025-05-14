@@ -17,7 +17,7 @@ struct BimboPrincipal: View {
     @State private var showProductos = false
     @State private var showReward = false
     @State private var selectedImage: UIImage?
-    @State private var classificationResult: String = "Toma una foto"
+    @State private var classificationResult: String = "Sin registro"
     @State private var confidence: Double = 0.0
     @State private var showingCameraModel = false
     @State private var showProductModel = false
@@ -35,12 +35,15 @@ struct BimboPrincipal: View {
                         .frame(width: 300, height: 200)
                         .padding(.top, 60)
                     
-                    HStack(spacing: 90) {
+                    HStack(spacing: 25) {
                         UserProfileStyleComponent(imageName: "eslogan", name: "Jesús Ortega", style: .horizontal)
                             .background(
                                 Color.bimboBlack.opacity(0.4)
                             ).clipShape(RoundedRectangle(cornerRadius: 40))
                             .frame(maxWidth: 250,maxHeight: 65)
+                        
+                        UserProfileStyleComponent(imageName: classificationResult, name: classificationResult, style: .vertical)
+                            .frame(maxWidth: 40)
                         
                         Button {
                             showReward = true
@@ -206,6 +209,7 @@ struct BimboPrincipal: View {
             guard let results = request.results as? [VNClassificationObservation],
                   let topResult = results.first else {
                 classificationResult = "No se pudieron interpretar los resultados"
+                puntosVM.puntos = puntosVM.puntos + 100
                 return
             }
             
