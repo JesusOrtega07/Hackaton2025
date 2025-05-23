@@ -39,6 +39,7 @@ struct CustomTextField: View {
                 switch type {
                 case .normal:
                     TextField(placeholder, text: $text)
+                        .bold()
                 case .secure:
                     SecureField(placeholder, text: $text)
                 case .textEditor:

@@ -17,7 +17,8 @@ struct LogIn: View {
 
     var body: some View {
         ZStack {
-            Color.bimboazulito
+            Image("FondoLogIn")
+                .resizable()
                 .ignoresSafeArea()
 
             VStack {
@@ -27,10 +28,9 @@ struct LogIn: View {
 
                 ZStack {
                     Rectangle()
-                        .foregroundColor(Color.bimboazulito)
+                        .foregroundColor(Color.bimboazulito.opacity(0.4))
                         .frame(width: 400, height: 480)
                         .cornerRadius(26)
-                        //.offset(y: 70) // Eliminado para subir el rectángulo
                         .overlay(
                             VStack(spacing: 20) {
                                 Text("Iniciar sesión")
@@ -40,7 +40,7 @@ struct LogIn: View {
                                     .padding(.top, -80) // Antes era 130, ahora es más arriba
 
                                 CustomTextField(
-                                    title: "Ingresa tu usuario",
+                                    title: "Usuario",
                                     placeholder: "",
                                     text: $username,
                                     type: .normal,
